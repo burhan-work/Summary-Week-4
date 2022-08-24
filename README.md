@@ -110,3 +110,334 @@ Kita dapat memanggil callback pada sebuah function dengan cara memanggilnya ke d
     ![](assets/ha.PNG)
 
 3. Dalam pemanggilan **function introduction**, kita mengisi argumen dari parameter yang dibutuhkan yaitu Ahmad, Fauzul, dan **function greeting** yang sudah kita buat sebelumnya lalu kita panggil **callback(fullName)** di dalam **function introduction** sehingga kita bisa mendapatkan hasil dari **function greeting**.
+
+### *Promise*
+*Promise* adalah salah satu fitur dari ES6 (ES2015) JavaScript. Konsep *promise* hadir untuk memecahkan masalah yang bertele-tele dengan *callback*, semakin banyak kita menggunakan *callback* untuk proses *asynchronous* semakin kompleks dan sulit kode kita untuk dibaca dan dipelihara.
+
+**Konsep *Promise***
+
+*Promise* sesuai dengan artinya adalah janji. Seperti ketika kita berjanji, jika apa yang kita janjikan bisa kita lakukan maka kita harus melakukannya, jika janjinya ada halangan maka kita tidak bisa melakukannya atau jika janji tersebut belum pada waktunya kita juga harus menunggunya.
+
+**3 Status *Promise* di JavaScript**
+
+Analogi dari sebuah *promise* di JavaScript itu sama seperti kita saat mengambil suatu data baik itu dari database maupun *Request* API. Akan ada 3 kondisi yaitu data sedang diproses, data berhasil didapatkan, atau data gagal didapatkan.
+
+- **pending**, jika data sedang diproses.
+- **fulfilled**, jika data telah berhasil didapatkan.
+- **rejected**, jika data gagal didapatkan.
+
+**Contoh menggunakan *promise***
+
+    let newPromise = new Promise((resolve, reject) => {
+        if (true) {
+            // apa yang dilakukan jika promise fulfilled
+            resolve("Berhasil");
+        } else {
+            // apa yang dilakukan jika promise rejected
+            reject("Gagal");
+        }
+    });
+
+Kita bisa membuat sendiri apa yang akan dilakukan pada sebuah *promise*. Di dalam *promise* ada 2 *keyword* yaitu **resolve()** (jika proses berhasil atau *fullfilled*) dan **reject()** (jika proses gagal atau *rejected*).
+
+**Contoh penggunaan *promise fullfilled***
+
+Untuk *fulfilled* hanya bisa tereksekusi jika kita kondisi berhasil pada saat kita melakukan *async*. Kita *set condition* menjadi *true* untuk simulasi *fulfilled*.
+
+    const condition = true;
+
+    let newPromise = new Promise((resolve, reject) => {
+        if (condition) {
+            // apa yang dilakukan jika promise 'fulfilled'
+            resolve("Berhasil");
+        } else {
+            // apa yang dilakukan jika promise 'rejected'
+            reject(new Error("Error Gagal"));
+        }
+    });
+
+Untuk bisa mengeksekusi promise yang sudah dibuat kita bisa memanggil promise tersebut menggunakan **.then()**:
+
+    const condition = true;
+
+    let newPromise = new Promise((resolve, reject) => {
+        if (condition) {
+            // apa yang dilakukan jika promise 'fulfilled'
+            resolve("Berhasil");
+        } else {
+            // apa yang dilakukan jika promise 'rejected'
+            reject(new Error("Error Gagal"));
+        }
+    });
+
+    newPromise.then((result) => {
+        console.log(result);
+    });
+
+Hasil *output* di console:
+
+![](assets/be.PNG)
+
+Selain itu kita juga bisa memanggil **.then()** lebih dari satu kali ketika dibutuhkan.
+
+Contoh:
+
+    const condition = true;
+
+    let newPromise = new Promise((resolve, reject) => {
+        if (condition) {
+            // apa yang dilakukan jika promise 'fulfilled'
+            resolve("Berhasil");
+        } else {
+            // apa yang dilakukan jika promise 'rejected'
+            reject(new Error("Error Gagal"));
+        }
+    });
+
+    newPromise.then((result) => {
+        return result;
+    })
+
+    .then((result2) => {
+        console.log(result2 + "!!");
+    });
+
+Hasil output di console:
+
+![](assets/ber.PNG)
+
+**Contoh penggunaan *promise rejected***
+
+Untuk *rejected* hanya bisa tereksekusi jika kita mengalami *error* pada saat kita melakukan proses *asynchronous*. Kita *set condition* menjadi *false* untuk simulasi *rejected*.
+
+    const condition = false;
+
+    let newPromise = new Promise((resolve, reject) => {
+        if (condition) {
+            // apa yang dilakukan jika promise 'fulfilled'
+            resolve("Berhasil");
+        } else {
+            // apa yang dilakukan jika promise 'rejected'
+            reject(new Error("Error Gagal"));
+        }
+    });
+
+Hasil *output* di console:
+
+![](assets/er.PNG)
+
+Untuk bisa mengantisipasi jika terjadi *error* kita bisa menambahkan **.catch()** pada *promise*. Sehingga, kita bisa memberi tahu pengguna jika terjadi suatu *error*.
+
+    const condition = false;
+
+    let newPromise = new Promise((resolve, reject) => {
+        if (condition) {
+            // apa yang dilakukan jika promise 'fulfilled'
+            resolve("Berhasil");
+        } else {
+            // apa yang dilakukan jika promise 'rejected'
+            reject(new Error("Error Gagal"));
+        }
+    });
+
+    newPromise.then((result) => {
+        console.log(result);
+    })
+
+    .catch((error) => {
+        console.log(error.message); //
+    });
+
+Hasil *output* di console:
+
+![](assets/ga.PNG)
+
+Selain **.then()** dan **.catch()**, dalam *promise* kita juga memiliki **.finally()** dalam *promise* JavaScript. **.finally()** adalah fungsi *callback* yang pasti tereksekusi dalam kondisi apapun (**fullfield** ataupun **rejected**).
+
+    const condition = true;
+
+    let newPromise = new Promise((resolve, reject) => {
+        if (condition) {
+            // apa yang dilakukan jika promise 'fulfilled'
+            resolve("Berhasil");
+        } else {
+            // apa yang dilakukan jika promise 'rejected'
+            reject(new Error("Error Gagal"));
+        }
+    });
+
+    newPromise
+    .then((result) => {
+        console.log(result); // Output: Berhasil
+    })
+    .catch((error) => {
+        console.log(error);
+    })
+    .finally(() => {
+        console.log("Finally tetap terpanggil dalam kondisi fulfilled ataupun rejected");
+    });
+
+Hasil *output* di console:
+
+![](assets/fi.PNG)
+
+### *Promise Instance*
+Pada banyak kasus biasanya kita dapat menggunakan *promise instance* seperti **.then()**, **.catch()**, dan **.finally()** untuk mengantisipasi *response* saat kita melakukan *request* ke *server*.
+
+Berikut contoh  penggunaan *promise instance* untuk proses mengambil data API dari https://jsonplaceholder.typicode.com/ :
+
+    fetch("https://jsonplaceholder.typicode.com/users")
+    .then((response) => response.json()) // Jika data berhasil didapatkan
+
+    .then((json) => console.log(json))
+    .catch((error) => console.log(error)) // Jika data tidak berhasil didapatkan
+  
+    .finally(() => {
+        console.log("Finally tetap terpanggil dalam kondisi fulfilled ataupun rejected"); // Finally tetap terpanggil dalam kondisi fulfilled ataupun rejected
+    });
+
+Hasil *output* di console:
+
+![](assets/ta.PNG)
+
+Dari kode di atas, kita dapat mengetahui bahwa:
+1. **.then()** digunakan untuk mengantisipasi keadaan *fulfilled*, setelah *response* didapatkan dan menampilkan data *array of object* dari *server*.
+2. **.catch()** digunakan untuk mengantisipasi keadaan *rejected*, jika *response* gagal didapatkan atau terdapat *error* lain dari *server*, lantas apa yang ingin kita lakukan pada aplikasi? Menampilkan page error? Atau menampilkan alert?
+3. **.finally()** digunakan untuk mengantisipasi apa yang akan aplikasi lakukan saat *response* berhasil ataupun gagal didapatkan. Namun, penggunaan **.finally()** biasanya jarang dilakukan.
+
+### *Async*/*await*
+*Async*/*await* baru ada ketika update ES8 JavaScript dan dibangun menggunakan *promise*. Jadi sebenarnya *async*/*await* dan *promise* itu sama saja, namun hanya berbeda dari *syntax* dan cara penggunaannya. Sebuah *async function* bisa tidak berisi *await* sama sekali atau lebih dari satu *await*. *Keyword await* hanya bisa digunakan didalam *async function*, jika digunakan di luar *async function* maka akan terjadi error.
+
+***Async***
+
+*Async*, mengubah *function synchronous* menjadi *asynchronous*.
+
+Berikut ini contoh penggunaan dari async :
+
+    // async menggunakan keyword function 
+    async function tesAsyncAwait() {
+        return "Fulfilled";
+    }
+
+    console.log(tesAsyncAwait());
+
+    // async menggunakan arrow function
+    const tesAsyncAwait = async () => {
+        return "Fulfilled";
+    };
+
+    console.log(tesAsyncAwait());
+
+Jika salah satu kode di atas dijalankan, maka akan terlihat hasil *output* do console seperti berikut ini:
+
+![](assets/pr.PNG)
+
+***Await***
+
+*Await* hanya bisa digunakan dalam *async function* dan *await* adalah *keyword* dalam *async* yang digunakan untuk menunda hingga proses *asynchronous* selesai.
+
+Berikut contoh penggunaan dari *async*/*await*:
+
+    async function tesAsyncAwait() {
+        await 'Fulfilled';
+    }
+
+Kita juga bisa memberikan *error handling* pada *async*/*await*. Berikut contoh lengkap penggunaan *async*/*await*:
+
+    // Definisikan dahulu promise yang ingin digunakan
+    let condition = true;
+    let tesAsyncAwait = async (condition) => {
+        if (condition) {
+            return "Condition is fulfilled!";
+        } else {
+            throw "Condition is rejected!";
+        }
+    };
+
+    // Membuat fungsi run menjadi asynchronous menggunakan async/await
+    const run = async (condition) => {
+        try {
+            const message = await tesAsyncAwait(condition);
+            console.log(message);  // Output: Condition is fulfilled!
+            console.log("After condition is fulfilled"); // Output: After condition is fulfilled
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    run(true);
+
+Dari kode di atas, kita dapat melihat bahwa *run* adalah sebuah fungsi *async* dan *await* dipanggil bersamaan dengan fungsi **tesAsyncAwait(condition)**. **Await** pada fungsi ini artinya, **console.log** pada *message* dan **After condition is fulfilled** tidak akan dijalankan (ditunda) hingga proses **tesAsyncAwait(condition)** selesai dijalankan.
+
+Hasil *output* di console:
+
+![](assets/s.PNG)
+
+Berikut merupakan contoh perbandingan jika program sebelumnya dibuat menggunakan *promise*:
+
+    let condition = true;
+    let tesPromise = new Promise((resolve, reject) => {
+         if (condition) {
+            resolve("Condition is fulfilled!");
+        } else {
+            reject(new Error("Condition is rejected!"));
+        }
+    });
+
+    tesPromise
+    .then(result =>{
+        console.log(result); // Condition is fulfilled!
+        console.log("After condition is fulfilled"); // After condition is fulfilled
+    })
+    .catch(error =>{
+        console.log(error);
+    })
+
+Hasil *output* di console:
+
+![](assets/p.PNG)
+
+### *Fetch*
+Dalam JavaScript kita bisa mengirimkan *network request* dan juga bisa mengambil informasi data terbaru dari *server* jika dibutuhkan. Contoh *network request* yang biasa kita lakukan adalah sebagai berikut:
+
+- Mengirimkan data dari sebuah form.
+- Mengambil data untuk ditampilkan dalam list/table.
+- Mendapatkan notifikasi.
+
+Dalam melakukan *network request*, JavaScript memiliki metode bernama **fetch()**. Proses melakukan **fetch()** adalah salah satu proses *asynchronous* di JavaScript sehingga kita perlu menggunakan salah satu di antara *promise* atau *async*/*await*.
+
+***Fetch* dengan *Promise***
+
+Berikut ini contoh *request* data dengan **fetch()** menggunakan *promise*:
+
+    fetch("https://jsonplaceholder.typicode.com/posts")
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (post) {
+        console.log(post);
+    });
+
+Kode di atas mengambil data end-point dari API JSONPlaceholder. Berikut hasil *output* di console:
+
+![](assets/sa.PNG)
+
+Gambar di atas merupakan data hasil *request* dari **fetch()** menggunakan *promise* yang telah dilakukan.
+
+***Fetch* dengan *async*/*await***
+
+Berikut contoh *request* data dengan **fetch()** menggunakan *async*/*await*:
+
+    const tesFetchAsync = async () => {
+        let response = await fetch("https://jsonplaceholder.typicode.com/posts");
+        response = await response.json();
+        console.log(response);
+    };
+    tesFetchAsync();
+
+Kita masih mengambil data dari sumber end-point yang sama dengan fetch() sebelumnya yang menggunakan promise sehingga hasilnya pun masih sama persis seperti sebelumnya.
+
+Hasil *output* di console:
+
+![](assets/te.PNG)
+
