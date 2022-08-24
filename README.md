@@ -441,3 +441,20 @@ Hasil *output* di console:
 
 ![](assets/te.PNG)
 
+# RESPONSIVE WEB DESIGN
+*Responsive Web Design* bertujun untuk membuat *desain website* kita dapat diakses dalam *device* apapun.
+
+## *Setting Up Chrome Dev Tools*
+Setiap *developer website* wajib menggunakan *tools* bawaan dari setiap *browser* yang memudahkan proses *development website*. Pada *browser chrome* biasa disebut dengan *Chrome Dev Tools*. Berikut cara menggunakannya sebagai *Responsive Web Design*.
+
+1. Akses *Chrome Dev Tools*
+
+    Jika sudah membuka *browser Chrome*, kita bisa menggunakan *shortcut* berikut:
+
+        Ctrl + shift + J    (untuk Windows)
+
+    Berikut tampilan *Chrome Dev Tools*:
+
+    ![](assets/d.PNG)
+    
+      
