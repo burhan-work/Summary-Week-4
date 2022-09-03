@@ -442,19 +442,126 @@ Hasil *output* di console:
 ![](assets/te.PNG)
 
 # RESPONSIVE WEB DESIGN
-*Responsive Web Design* bertujun untuk membuat *desain website* kita dapat diakses dalam *device* apapun.
+Dalam membuat aplikasi kita harus memikirkan *user* yang akan menggunakannya. *Device* yang umumnya digunakan adalah laptop/PC, smartphone, dan tablet. *Responsive Web Design* bertujun untuk membuat *desain website* kita dapat diakses dalam *device* apapun.
 
-## *Setting Up Chrome Dev Tools*
-Setiap *developer website* wajib menggunakan *tools* bawaan dari setiap *browser* yang memudahkan proses *development website*. Pada *browser chrome* biasa disebut dengan *Chrome Dev Tools*. Berikut cara menggunakannya sebagai *Responsive Web Design*.
-
-1. Akses *Chrome Dev Tools*
-
-    Jika sudah membuka *browser Chrome*, kita bisa menggunakan *shortcut* berikut:
-
-        Ctrl + shift + J    (untuk Windows)
-
-    Berikut tampilan *Chrome Dev Tools*:
-
-    ![](assets/d.PNG)
+## *Add Viewport in* HTML
+Salah satu cara untuk membuat website kita menjadi responsive adalah dengan menambahkan baris perintah
     
-    sattt
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+di tag `<head>` pada HTML.
+
+Perintah lengkapnya:
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+    </body>
+    </html>
+
+## Media *Query*
+*Media query* digunakan untuk membuat beberapa *styles* tergantung pada jenis *device*. *Media query* untuk *responsive web design* umumnya hanya menggunakan 2 jenis media query, yaitu:
+
+1. min-width
+
+        @media screen and (min-width: your pixel) {
+            /* tag elemen HTML dan CSS */
+        }
+2. max-width
+
+        @media screen and (max-width: your pixel) {
+            /* tag elemen HTML dan CSS */
+        }
+
+Ada 2 cara dalam menggunakan media query
+
+1. Membuat file css berbeda untuk masing-masing *device*.
+2. Menggabungkan 1 file css untuk *setting styling* berbagai *device*.
+
+## *Breakpoint*
+*Breakpoint* adalah perubahan yg terjadi pada tampilan saat berganti *device* atau ukuran *width*. Misalnya ada 2 tampilan berbeda untuk 2 *device*, artinya ada 2 buah *breakpoint*. 
+
+*Responsive web design* dilakukan sesuai kebutuhan konten kita. Jika konten yang ditampilkan sudah tidak bisa diakses atau sulit dilihat pada *width* tertentu, sudah saatnya kamu menggunakan *media query*. Tidak ada aturan baku besaran *width* dan berapa banyak *breakpoint* yang harus dilakukan. 
+
+# *BOOTSTRAP*
+*Bootstrap* adalah *framework* HTML, CSS, dan JavaScript yang berfungsi untuk mendesain *website responsive* dengan cepat dan mudah. *Bootstrap* bersifat *responsive* berkat *grid system* yang digunakan. Sistem *grid* pada *bootstrap* menggunakan rangkaian *containers*, baris, dan kolom untuk menyesuaikan bentuk *layout* dan konten *website* kita. *Bootstrap* menjamin tampilan *website* kita akan tetap rapi dan konsisten di berbagai perangkat pengunjung, baik melalui smartphone, tablet, ataupun laptop.
+
+## Memanggil *Bootstrap*
+Ada 2 cara dalam memanggil *bootstrap*, yaitu:
+
+1. *Bootstrap online*
+
+    Pada file HTML, tuliskan perintah berikut: (menggunakan *bootstrap 5)
+
+        <!-- memanggil css bootstrap online -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+
+        <!-- memanggil js bootstrap online -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+
+2. *Bootstrap* yang sudah didownload
+
+    Langkah pertama adalah mendownload file *bootsrap* 5 pada *browser*, kemudian simpan di folder "vendor" kita. Setelah itu baru bisa dipanggil pada file HTML dengan perintah:
+
+        <!-- memanggil css bootstrap yang sudah didownload -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+
+        <!-- memanggil js bootstrap yang sudah didownload -->
+        <script src="js/bootstrap.bundle.js"></script>
+
+## *Grid System*
+Penggunaan *Grid System*, layar pada laptop kita akan terbagi menjadi 12 bagian (kolom). Untuk lebih jelasnya, tuiskan code berikut pada file HTML.
+
+        <div class="container" style="background-color: red;">
+        <div class="row">
+            <div class="col-12" style="background-color: green;">
+            &nbsp;
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4" style="background-color: yellow;">
+            &nbsp;
+            </div>
+
+            <div class="col-8" style="background-color: violet;">
+                &nbsp;
+                </div>
+        </div>
+
+        <div class="row">
+            <div class="col-7" style="background-color: blue;">
+            &nbsp;
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-10" style="background-color: violet;">
+            &nbsp;
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-10" style="background-color: greenyellow;">
+            &nbsp;
+            </div>
+        </div>
+    </div>
+
+Hasil output:
+
+![](assets/gr.PNG)
+
+Pada code di atas, 
+
+- class col-12 menandakan full-width
+- &nbsp; untuk blankspace
+- class : container dan container-fluid untuk container full-width
+
+*Bootstrap* menyediakan *component-component* yang siap pakai, seperti *accordion*, *alert*, *badge*, *card*, *button*, *navbar*, dan lain-lain.
